@@ -4,7 +4,9 @@
   "description": "Building blocks for react-js SPAs",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,15 @@
   "bugs": {
     "url": "https://github.com/StillLearnin/candle-wax/issues"
   },
-  "homepage": "https://github.com/StillLearnin/candle-wax#readme"
+  "homepage": "https://github.com/StillLearnin/candle-wax#readme",
+  "dependencies": {
+    "material-ui": "next",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^3.2.6",
+    "@storybook/addon-links": "^3.2.6",
+    "@storybook/react": "^3.2.8"
+  }
 }
