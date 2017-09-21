@@ -1,0 +1,19 @@
+{
+  "name": "candle-wax",
+  "version": "0.0.1",
+  "description": "Building blocks for react-js SPAs",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/StillLearnin/candle-wax.git"
+  },
+  "author": "StillLearnin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/StillLearnin/candle-wax/issues"
+  },
+  "homepage": "https://github.com/StillLearnin/candle-wax#readme"
+}
