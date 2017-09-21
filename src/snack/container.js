@@ -30,6 +30,9 @@ class Container extends PureComponent {
   }
 
   pop () {
+    if (this.props.onPop)
+      this.props.onPop(this.state.messages[0]);
+
     let messages = this.state.messages.splice(1);
     this.setState({
       messages
@@ -37,6 +40,9 @@ class Container extends PureComponent {
   }
 
   push (message) {
+    if (this.props.onPush)
+      this.props.onPush(message);
+
     let messages = [
       ...this.state.messages,
       message
