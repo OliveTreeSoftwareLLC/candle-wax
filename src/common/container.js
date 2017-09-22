@@ -30,12 +30,10 @@ class Container extends PureComponent {
     this.setState({
       item: null,
       items
-    });
+    }, () => this.onPop ? this.onPop(items[0]) : this.proceed());
 
     if (this.onPop)
       this.onPop(items[0]);
-    else
-      this.proceed();
   }
 
   proceed () {

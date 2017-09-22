@@ -11,14 +11,20 @@ class Container extends BaseContainer {
   constructor (props, state) {
     super(props,
       state,
-      (message) =>
-        <Snackbar anchorOrigin={{
-          horizontal: props.horizontal,
-          vertical: props.vertical
-        }}
-        message={message ? message.text : ""}
-        onRequestClose={(message && message.autoDismiss) ? this.pop.bind(this) : null}
-        open={message !== null && message !== undefined} />,
+      (message) => {
+        this.placeholder = message || this.placeholder;
+
+        let text = message ? message.text :
+          this.placeholder ? this.placeholder.text : "";
+
+        return <Snackbar anchorOrigin={{
+            horizontal: props.horizontal,
+            vertical: props.vertical
+          }}
+          message={text}
+          onRequestClose={(message && message.autoDismiss) ? this.pop.bind(this) : null}
+          open={message !== null && message !== undefined} />;
+      },
       (message) => this.pushed(message),
       (message) => this.popped(message)
     );

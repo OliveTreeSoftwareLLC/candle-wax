@@ -1,7 +1,7 @@
 "use strict";
 
 import { Button } from "material-ui";
-import { Container as SnackContainer, Message as SnackMessage } from "./index";
+import { Container, Message } from "./index";
 import { createMuiTheme, MuiThemeProvider } from "material-ui/styles";
 import React from "react";
 
@@ -14,8 +14,8 @@ const theme = createMuiTheme({
 const infinite = () =>
   <MuiThemeProvider theme={theme}>
     <div>
-      <SnackContainer />
-      <Button onClick={() => new SnackMessage("To infinity and beyond!").show()}
+      <Container />
+      <Button onClick={() => new Message("To infinity and beyond!").show()}
         raised>
         Show infinite message
       </Button>
@@ -25,9 +25,9 @@ const infinite = () =>
 const left = () =>
   <MuiThemeProvider theme={theme}>
     <div>
-      <SnackContainer horizontal="left"
+      <Container horizontal="left"
         id="left-orio" />
-      <Button onClick={() => new SnackMessage("I'm the only one left!", 0, true).show("left-orio")}
+      <Button onClick={() => new Message("I'm the only one left!", 0, true).show("left-orio")}
         raised>
         Show left-aligned message
       </Button>
@@ -37,8 +37,8 @@ const left = () =>
 const timed = () =>
 <MuiThemeProvider theme={theme}>
   <div>
-    <SnackContainer id="timed-orio" />
-    <Button onClick={() => new SnackMessage("For I am ephemeral, and perish ere the day breaks...", 5000, false).show("timed-orio")}
+    <Container id="timed-orio" />
+    <Button onClick={() => new Message("For I am ephemeral, and perish ere the day breaks...", 5000, false).show("timed-orio")}
       raised>
       Show timed message
     </Button>
@@ -48,10 +48,10 @@ const timed = () =>
 const top = () =>
 <MuiThemeProvider theme={theme}>
   <div>
-    <SnackContainer horizontal="right"
+    <Container horizontal="right"
       id="top-orio"
       vertical="top" />
-    <Button onClick={() => new SnackMessage("Front and right, men!", 0, true).show("top-orio")}
+    <Button onClick={() => new Message("Front and right, men!", 0, true).show("top-orio")}
       raised>
       Show top-aligned message
     </Button>

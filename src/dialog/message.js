@@ -2,6 +2,7 @@
 
 class Message {
   constructor (title, details, fullScreen = false) {
+    this.actions = [];
     this.title = title;
     this.details = details;
     this.fullScreen = fullScreen;
