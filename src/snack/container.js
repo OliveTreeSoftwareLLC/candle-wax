@@ -1,77 +1,52 @@
 "use strict";
 
+import BaseContainer from "../common/container";
 import PropTypes from "prop-types";
-import React, { PureComponent } from "react";
+import React from "react";
 import Snackbar from "material-ui/Snackbar";
 
 let timer = null;
 
-class Container extends PureComponent {
+class Container extends BaseContainer {
   constructor (props, state) {
-    super(props, state);
-
-    window.orio = this;
-    this.state = {
-      message: null,
-      messages: []
-    };
+    super(props,
+      state,
+      (message) =>
+        <Snackbar anchorOrigin={{
+          horizontal: props.horizontal,
+          vertical: props.vertical
+        }}
+        message={message ? message.text : ""}
+        onRequestClose={(message && message.autoDismiss) ? this.pop.bind(this) : null}
+        open={message !== null && message !== undefined} />,
+      (message) => this.pushed(message),
+      (message) => this.popped(message)
+    );
   }
 
-  shouldComponentUpdate (nextProps, nextState) {
-    return timer === null ||
-      nextState.message !== this.state.message;
+  popped (message) {
+    timer = setTimeout(() => {
+      if (message) {
+        this.proceed();
+        if (message.timeout > 0)
+          timer = setTimeout(this.pop.bind(this), message.timeout);
+      } else {
+        timer = null;
+      }
+    }, 300);
   }
 
-  render () {
-    let message = this.state.message;
-
-    if (message && message.timeout > 10 && !timer)
-      timer = setTimeout(this.pop.bind(this), message.timeout);
-
-    return <Snackbar anchorOrigin={{
-        horizontal: this.props.horizontal,
-        vertical: this.props.vertical
-      }}
-      message={message ? message.text : ""}
-      onRequestClose={this.pop.bind(this)}
-      open={message !== null && message !== undefined} />
-  }
-
-  pop () {
-    if (this.props.onPop)
-      this.props.onPop(this.state.messages[0]);
-
-    timer = null;
-
-    let messages = this.state.messages.splice(1);
-    this.setState({
-      message: null,
-      messages
-    });
-
-    setTimeout(() => this.setState({
-      message: messages[0]
-    }), 300);
-  }
-
-  push (message) {
-    if (this.props.onPush)
-      this.props.onPush(message);
-
-    let messages = [
-      ...this.state.messages,
-      message
-    ];
-
-    this.setState({
-      message: this.state.message || message,
-      messages
-    });
+  pushed (message) {
+    if (message.timeout > 0 && timer === null)
+      timer = setTimeout(() => {
+        this.pop();
+      }, message.timeout);
   }
 }
 
 Container.defaultProps = {
   horizontal: "center",
+  id: "candle-wax-snack-container",
   vertical: "bottom"
 };
 

@@ -25,8 +25,9 @@ const infinite = () =>
 const left = () =>
   <MuiThemeProvider theme={theme}>
     <div>
-      <SnackContainer horizontal="left" />
-      <Button onClick={() => new SnackMessage("I'm the only one left!", 0, "left").show()}
+      <SnackContainer horizontal="left"
+        id="left-orio" />
+      <Button onClick={() => new SnackMessage("I'm the only one left!", 0, true, "left").show("left-orio")}
         raised>
         Show left-aligned message
       </Button>
@@ -36,8 +37,8 @@ const left = () =>
 const timed = () =>
 <MuiThemeProvider theme={theme}>
   <div>
-    <SnackContainer />
-    <Button onClick={() => new SnackMessage("For I am ephemeral, and perish ere the night falls...", 3000, "left").show()}
+    <SnackContainer id="timed-orio" />
+    <Button onClick={() => new SnackMessage("For I am ephemeral, and perish ere the day breaks...", 5000, false, "left").show("timed-orio")}
       raised>
       Show timed message
     </Button>
@@ -48,8 +49,9 @@ const top = () =>
 <MuiThemeProvider theme={theme}>
   <div>
     <SnackContainer horizontal="right"
+      id="top-orio"
       vertical="top" />
-    <Button onClick={() => new SnackMessage("Front and right, men!", 0, "left").show()}
+    <Button onClick={() => new SnackMessage("Front and right, men!", 0, true, "left").show("top-orio")}
       raised>
       Show top-aligned message
     </Button>
