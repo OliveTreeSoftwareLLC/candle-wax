@@ -6,4 +6,6 @@ import { storiesOf } from "@storybook/react";
 
 storiesOf("Snack", module)
   .add("infinite", snackStories.infinite)
-  .add("two seconds", snackStories.timed);
+  .add("left-aligned", snackStories.left)
+  .add("top-aligned", snackStories.top)
+  .add("timed", snackStories.timed);
